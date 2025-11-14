@@ -1,722 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wildlife Atlas — Endangered Species Encyclopedia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root{
+      --bg:#f3fbff;
+      --card:#ffffff;
+      --muted:#6c7d84;
+      --primary:#0b7285;
+      --accent:#2aa0c8;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 8px 24px rgba(11,114,133,0.08);
+      --maxw:1200px;
+      --radius:12px;
+      --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family:var(--mono);color:#05303a}
+    html,body{height:100%;background:linear-gradient(180deg,#f1fbff 0%,var(--bg) 100%);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{width:90%;max-width:var(--maxw);margin:0 auto;padding:2rem 0}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:120;
+      background:rgba(255,255,255,0.78);
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(11,114,133,0.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:.75rem;font-weight:700;font-size:1.15rem;color:var(--primary)
+    }
+    .brand i{font-size:1.4rem}
+    nav ul{display:flex;gap:1.25rem;list-style:none;align-items:center;margin:0}
+    nav a{color:var(--primary);font-weight:600;padding:0.4rem 0;opacity:.95}
+    nav a:hover{color:var(--accent)}
+    .mobile-toggle{display:none;font-size:1.3rem;color:var(--primary);cursor:pointer}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 460px;
+      gap:2rem;
+      align-items:center;
+      padding:3.5rem 0;
+    }
+    .hero-left h1{font-size:2.1rem;color:var(--primary);margin-bottom:.6rem}
+    .hero-left p{color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+    .cta-row{display:flex;gap:.75rem;align-items:center}
+    .btn{
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:white;padding:.7rem 1.1rem;border-radius:999px;border:none;cursor:pointer;font-weight:700;box-shadow:var(--shadow);
+    }
+    .btn.ghost{background:transparent;color:var(--primary);border:1px solid rgba(11,114,133,0.08)}
+    .hero-right{
+      background:linear-gradient(180deg, rgba(42,160,200,0.08), rgba(11,114,133,0.03));
+      border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)
+    }
+    .hero-image{
+      width:100%;height:320px;border-radius:8px;overflow:hidden;background-position:center;background-size:cover;
+    }
+    .hero-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;color:var(--muted);font-size:.95rem}
+
+    /* Section titles */
+    .section-title{text-align:center;margin:2.25rem 0}
+    .section-title h2{color:var(--primary);font-size:1.6rem;margin-bottom:.5rem}
+    .section-title p{color:var(--muted);max-width:760px;margin:0 auto}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+    .stat{
+      background:var(--card);padding:1rem;border-radius:10px;box-shadow:0 6px 18px rgba(8,55,63,0.04);text-align:center
+    }
+    .stat h3{font-size:1.6rem;color:var(--primary)}
+    .stat p{color:var(--muted);margin-top:.25rem;font-size:.95rem}
+
+    /* Catalog / cards */
+    .controls{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.25rem;flex-wrap:wrap}
+    .filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+    .filter-btn{background:transparent;border:1px solid rgba(11,114,133,0.06);padding:.4rem .6rem;border-radius:999px;cursor:pointer;color:var(--primary);font-weight:600}
+    .filter-btn.active{background:var(--primary);color:white;border-color:transparent;box-shadow:0 8px 20px rgba(11,114,133,0.06)}
+    .catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.25rem}
+    .card{
+      background:var(--card);border-radius:12px;padding:0;overflow:hidden;border:1px solid rgba(8,55,63,0.04);box-shadow:var(--shadow);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 16px 36px rgba(8,55,63,0.08)}
+    .card .thumb{height:220px;background-position:center;background-size:cover}
+    .card .body{padding:1rem}
+    .card h4{color:var(--primary);margin-bottom:.35rem}
+    .tag{display:inline-block;background:rgba(10,120,140,0.08);color:var(--primary);padding:.25rem .5rem;border-radius:999px;font-size:.85rem;margin-right:.5rem}
+    .meta{color:var(--muted);font-size:.95rem;margin-bottom:.5rem}
+    .desc{color:#23464a;font-size:.98rem;line-height:1.45;margin-bottom:1rem}
+    .info-row{display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+    .small{font-size:.85rem;color:var(--muted)}
+
+    /* Lightbox modal */
+    .modal{
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,10,14,0.55);
+      visibility:hidden;opacity:0;transition:opacity .18s ease,visibility .18s;
+    }
+    .modal.open{visibility:visible;opacity:1}
+    .modal .panel{max-width:1000px;width:94%;background:white;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1fr 360px}
+    .modal .panel .image{min-height:360px;background-position:center;background-size:cover}
+    .modal .panel .content{padding:1rem}
+    .modal .close{position:absolute;top:18px;right:20px;color:white;font-size:1.25rem;cursor:pointer}
+
+    /* Science & article */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .card-plain{background:var(--card);padding:1rem;border-radius:10px;box-shadow:0 6px 18px rgba(8,55,63,0.04)}
+
+    /* Footer */
+    footer{padding:2.25rem 0;margin-top:2rem}
+    .foot-grid{display:grid;grid-template-columns:1fr 220px;gap:1rem;align-items:center}
+    .socials{display:flex;gap:.5rem}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:rgba(11,114,133,0.06);color:var(--primary)}
+
+    /* responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr;gap:1rem}
+      .catalog{grid-template-columns:repeat(2,1fr)}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+    }
+    @media (max-width:640px){
+      .catalog{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .hero-right .hero-image{height:220px}
+      .modal .panel{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <header>
+    <div class="container nav" id="home">
+      <div class="brand" aria-label="Wildlife Atlas brand">
+        <i class="fas fa-compass" aria-hidden="true"></i>
+        <div>
+          <div style="font-size:.95rem">Wildlife Atlas</div>
+          <div style="font-size:.78rem;color:var(--muted);font-weight:600">Endangered Species Encyclopedia</div>
         </div>
-    </header>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+      <nav>
+        <div class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></div>
+        <ul id="navList" role="menubar">
+          <li role="none"><a role="menuitem" href="#home">Home</a></li>
+          <li role="none"><a role="menuitem" href="#atlas">Catalog</a></li>
+          <li role="none"><a role="menuitem" href="#science">Science</a></li>
+          <li role="none"><a role="menuitem" href="#takeaction">Take Action</a></li>
+          <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <h1 id="hero-title">Wildlife Atlas — Polar Ecosystems & Ocean Guardians</h1>
+        <p>Explore concise, science-backed profiles of endangered species. Learn their ecology, threats, and ways you can help preserve them.</p>
+        <div class="cta-row" role="region" aria-label="Primary actions">
+          <button class="btn" id="joinBtn">Get Involved</button>
+          <a href="#atlas" class="btn ghost" style="padding:.6rem .9rem">Browse Catalog</a>
         </div>
+
+        <div class="section-title" style="margin-top:1.6rem">
+          <h2>Featured Species</h2>
+          <p>A compact guide to three emblematic species of polar and coastal ecosystems: the Polar Bear, the Penguin and the Sea Turtle.</p>
+        </div>
+
+        <!-- small stats -->
+        <div class="stats" aria-hidden="false" aria-label="Quick facts">
+          <div class="stat">
+            <h3 class="counter" data-target="20">0</h3>
+            <p>Research Projects</p>
+          </div>
+          <div class="stat">
+            <h3 class="counter" data-target="150">0</h3>
+            <p>Protected Sites</p>
+          </div>
+          <div class="stat">
+            <h3 class="counter" data-target="3">0</h3>
+            <p>Focus Species</p>
+          </div>
+          <div class="stat">
+            <h3 class="counter" data-target="120000">0</h3>
+            <p>Community Supporters</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-label="Hero image and key facts">
+        <div class="hero-image" id="heroImage" role="img" aria-label="Arctic ice and wildlife"
+             style="background-image:url('https://images.unsplash.com/photo-1508261306352-4e9f16c8b9f4?auto=format&fit=crop&w=1600&q=80')">
+        </div>
+        <div class="hero-meta">
+          <div class="muted">
+            <div style="font-weight:700">Region</div>
+            <div class="small">Arctic & Coastal Ecosystems</div>
+          </div>
+          <div class="muted">
+            <div style="font-weight:700">Focus</div>
+            <div class="small">Conservation & Science</div>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+    <!-- Catalog -->
+    <section class="container" id="atlas" aria-labelledby="atlas-title">
+      <div class="section-title">
+        <h2 id="atlas-title">Species Catalog</h2>
+        <p>Quick, evidence-based profiles + essential conservation information. Click an entry to see details and actionable steps.</p>
+      </div>
+
+      <div class="controls">
+        <div class="filters" role="toolbar" aria-label="Filter species">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="polar">Polar</button>
+          <button class="filter-btn" data-filter="marine">Marine</button>
         </div>
+
+        <div class="muted small">Tip: Click an image to open the species card with more details.</div>
+      </div>
+
+      <div class="catalog" id="catalog">
+        <!-- Polar Bear -->
+        <article class="card" data-type="polar" data-species="polar-bear" tabindex="0" aria-labelledby="pb-title">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Polar bear on sea ice"></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Polar</span><span class="small">Ursus maritimus</span></div>
+            <h4 id="pb-title">Polar Bear</h4>
+            <p class="desc">A large carnivoran adapted to Arctic sea-ice environments. Polar bears rely on sea ice to hunt seals and are vulnerable to warming and ice loss.</p>
+            <div class="info-row">
+              <div class="small muted">Status: Vulnerable / Endangered (region-dependent)</div>
+              <div><button class="btn" data-open="polar-bear">Read</button></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Penguin -->
+        <article class="card" data-type="polar" data-species="penguin" tabindex="0" aria-labelledby="peng-title">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1538481235194-8a1b9f0d8b5c?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Penguin colony on rocks"></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Polar</span><span class="small">Spheniscidae</span></div>
+            <h4 id="peng-title">Penguin</h4>
+            <p class="desc">Flightless seabirds specialized for swimming. Several species live in polar and subpolar regions; threats include warming seas and fisheries overlap.</p>
+            <div class="info-row">
+              <div class="small muted">Status: Varies by species</div>
+              <div><button class="btn" data-open="penguin">Read</button></div>
+            </div>
+          </article>
+
+        <!-- Sea Turtle -->
+        <article class="card" data-type="marine" data-species="sea-turtle" tabindex="0" aria-labelledby="turtle-title">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Sea turtle swimming"></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Marine</span><span class="small">Cheloniidae / Dermochelyidae</span></div>
+            <h4 id="turtle-title">Sea Turtle</h4>
+            <p class="desc">Long-lived marine reptiles that migrate across oceans to nest. Main threats include bycatch, plastic ingestion, and coastal development.</p>
+            <div class="info-row">
+              <div class="small muted">Status: Most species are threatened</div>
+              <div><button class="btn" data-open="sea-turtle">Read</button></div>
+            </div>
+          </article>
+      </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Science -->
+    <section class="container" id="science" aria-labelledby="science-title">
+      <div class="section-title">
+        <h2 id="science-title">Science & Conservation</h2>
+        <p>Short primers on research methods, monitoring, and how conservation measures are evaluated.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card-plain">
+          <h3>How researchers study populations</h3>
+          <p class="muted">Population estimates rely on direct counts, mark-recapture, satellite telemetry, and genetic sampling. For polar species, remote sensing of habitat (e.g., sea ice) is often used as a proxy for availability of resources.</p>
+          <ul style="margin-top:.5rem;color:#23464a;line-height:1.6">
+            <li><strong>Telemetry:</strong> Satellite tags reveal movement and habitat use.</li>
+            <li><strong>Surveys:</strong> Aerial and ship-based counts estimate abundance.</li>
+            <li><strong>Genetics:</strong> Helps define population structure and connectivity.</li>
+          </ul>
         </div>
+        <div class="card-plain">
+          <h3>Effective conservation actions</h3>
+          <p class="muted">Conservation combines protected areas, fisheries management, pollution reduction, and climate mitigation. Community engagement and policy instruments (e.g., marine protected areas) are crucial.</p>
+          <ol style="margin-top:.5rem;color:#23464a;line-height:1.6">
+            <li>Protect critical habitats and migration corridors.</li>
+            <li>Reduce bycatch and marine pollution.</li>
+            <li>Monitor populations to adapt management.</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <!-- Take Action -->
+    <section class="container" id="takeaction" aria-labelledby="action-title">
+      <div class="section-title">
+        <h2 id="action-title">Take Action</h2>
+        <p>Small steps add up—practical actions you can take to help polar and marine wildlife.</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:1.25rem">
+        <div class="card-plain">
+          <h4>Community & Citizen Science</h4>
+          <p class="muted">Participate in beach cleanups, report sightings to monitoring platforms, and support local conservation groups.</p>
         </div>
+        <div class="card-plain">
+          <h4>Reduce Plastic & Carbon Footprint</h4>
+          <p class="muted">Reduce single-use plastics and support policies that lower greenhouse gas emissions—both directly help marine and polar species.</p>
+        </div>
+      </div>
+
+      <div class="center">
+        <button class="btn" id="donateBtn">Donate to Research</button>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+    <!-- Contact / Footer CTA -->
+    <section class="container" id="contact" aria-labelledby="contact-title" style="margin-top:2rem">
+      <div class="section-title">
+        <h2 id="contact-title">Contact & Resources</h2>
+        <p>Reach out to researchers or organizations, explore open datasets, and follow up-to-date research.</p>
+      </div>
+
+      <div class="foot-grid">
+        <div>
+          <p class="muted">For partnerships, email us:</p>
+          <p style="font-weight:700">research@wildlifeatlas.org</p>
+          <p style="margin-top:.6rem" class="muted">Resources: IUCN Red List, peer-reviewed journals, marine data portals.</p>
         </div>
-    </footer>
+        <div class="center">
+          <div class="socials" role="list">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+  <!-- Lightbox / modal templates for species -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-label="Species details">
+    <div class="panel" role="document">
+      <div class="image" id="modalImage" style="background-image:url('');"></div>
+      <div class="content" id="modalContent">
+        <h3 id="modalTitle">Species</h3>
+        <p id="modalScientific" class="muted small"></p>
+        <p id="modalDesc"></p>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
+        <h4 style="margin-top:1rem">Threats</h4>
+        <p id="modalThreats" class="muted small"></p>
+
+        <h4 style="margin-top:1rem">Conservation Actions</h4>
+        <ul id="modalActions" style="line-height:1.6;color:#23464a"></ul>
+
+        <div style="margin-top:1rem" class="info-row">
+          <button class="btn" id="modalClose">Close</button>
+          <a href="#" id="modalLearn" class="btn ghost" style="padding:.5rem .85rem">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="close" id="modalBackdrop" aria-hidden="true" title="Close modal"></div>
+  </div>
+
+  <footer style="background:transparent">
+    <div class="container">
+      <div class="center" style="padding-top:1.25rem;color:var(--muted)">
+        <small>&copy; 2025 Wildlife Atlas. Built for education and outreach.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navList = document.getElementById('navList');
+    mobileToggle && mobileToggle.addEventListener('click', () => {
+      navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+      navList.style.flexDirection = 'column';
+      navList.style.background = 'rgba(255,255,255,0.95)';
+      navList.style.position = 'absolute';
+      navList.style.right = '20px';
+      navList.style.top = '64px';
+      navList.style.padding = '1rem';
+      navList.style.boxShadow = '0 12px 30px rgba(2,10,14,0.08)';
+    });
+
+    // Counters
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 120; // smaller is faster
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+        if (current < target) {
+          counter.innerText = Math.min(target, current + increment);
+          setTimeout(animateCounters, 30);
+        } else {
+          counter.innerText = target;
         }
+      });
+    }
+    window.addEventListener('load', animateCounters);
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+    // Catalog Filters
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.catalog .card');
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        cards.forEach(card => {
+          const type = card.getAttribute('data-type');
+          if (filter === 'all' || filter === type) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
         });
-    </script>
-</body>
+      });
+    });
 
+    // Modal data for species
+    const speciesData = {
+      "polar-bear": {
+        title: "Polar Bear",
+        scientific: "Ursus maritimus",
+        image: "https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1600&q=80",
+        desc: "Polar bears are apex predators of Arctic sea-ice ecosystems. They are specialized for hunting seals from sea ice and are highly dependent on seasonal ice cover.",
+        threats: "Loss of sea ice due to climate warming, reduced access to prey, pollutant exposure, and local disturbances.",
+        actions: [
+          "Support and advocate for greenhouse gas reductions.",
+          "Protect key sea-ice habitats and migration corridors.",
+          "Support community-led monitoring and research efforts."
+        ],
+        learnLink: "#"
+      },
+      "penguin": {
+        title: "Penguin",
+        scientific: "Spheniscidae (family)",
+        image: "https://images.unsplash.com/photo-1538481235194-8a1b9f0d8b5c?auto=format&fit=crop&w=1600&q=80",
+        desc: "Penguins are flightless seabirds adapted to swimming. Different species occupy Antarctic, subantarctic, and temperate coasts; many rely on marine food webs that are sensitive to climate and fisheries.",
+        threats: "Climate change altering prey availability, fisheries competition, and habitat degradation.",
+        actions: [
+          "Reduce bycatch and promote sustainable fisheries.",
+          "Support marine protected areas covering critical foraging zones.",
+          "Engage in citizen science monitoring programs."
+        ],
+        learnLink: "#"
+      },
+      "sea-turtle": {
+        title: "Sea Turtle",
+        scientific: "Cheloniidae & Dermochelyidae",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+        desc: "Sea turtles are long-lived reptiles that migrate across ocean basins to nest on beaches. They play critical roles in marine ecosystems (e.g., maintaining seagrass beds).",
+        threats: "Bycatch, plastic ingestion, coastal development affecting nesting beaches, pollution, and climate impacts on hatchling sex ratios.",
+        actions: [
+          "Participate in beach cleanups and reduce single-use plastics.",
+          "Support measures to reduce bycatch (e.g., turtle-excluder devices).",
+          "Protect and restore nesting beaches and lighting practices."
+        ],
+        learnLink: "#"
+      }
+    };
+
+    // Open modal when pressing card button
+    const openButtons = document.querySelectorAll('[data-open]');
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalScientific = document.getElementById('modalScientific');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalThreats = document.getElementById('modalThreats');
+    const modalActions = document.getElementById('modalActions');
+    const modalLearn = document.getElementById('modalLearn');
+    const modalClose = document.getElementById('modalClose');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-open');
+        openSpeciesModal(key);
+      });
+    });
+
+    // Also open when clicking on the card itself (thumb area)
+    document.querySelectorAll('.catalog .card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // avoid double triggering when clicking the inner button
+        const btn = card.querySelector('[data-open]');
+        if (e.target === btn || btn.contains(e.target)) return;
+        const key = card.getAttribute('data-species');
+        openSpeciesModal(key);
+      });
+      // keyboard accessible
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const key = card.getAttribute('data-species');
+          openSpeciesModal(key);
+        }
+      });
+    });
+
+    function openSpeciesModal(key) {
+      const data = speciesData[key];
+      if (!data) return;
+      modalImage.style.backgroundImage = `url('${data.image}')`;
+      modalTitle.textContent = data.title;
+      modalScientific.textContent = data.scientific;
+      modalDesc.textContent = data.desc;
+      modalThreats.textContent = data.threats;
+      modalActions.innerHTML = '';
+      data.actions.forEach(a => {
+        const li = document.createElement('li');
+        li.textContent = a;
+        modalActions.appendChild(li);
+      });
+      modalLearn.href = data.learnLink;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      // trap focus minimally
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // CTA buttons (just smooth scroll / anchor behavior fallback)
+    document.getElementById('joinBtn').addEventListener('click', () => {
+      document.getElementById('takeaction').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('donateBtn') && document.getElementById('donateBtn').addEventListener('click', () => {
+      alert('Thank you for your interest! This demo does not process payments. Please contact research@wildlifeatlas.org for donation information.');
+    });
+
+    // Accessibility: close modal when focus moves outside - basic
+    modal.addEventListener('focusout', (e) => {
+      // keep it simple: do nothing complex here; modal closes with ESC or close button
+    });
+
+    // Ensure nav links scroll smoothly
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.length <= 1) return;
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
 </html>
